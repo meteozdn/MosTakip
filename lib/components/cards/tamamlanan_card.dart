@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../paddings.dart';
+import '../styles/paddings.dart';
 
 class TamamlananCard extends StatelessWidget {
   final Color color;

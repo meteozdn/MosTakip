@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:takip_sistem_mos/components/paddings.dart';
+import 'package:takip_sistem_mos/components/styles/paddings.dart';
+import 'package:takip_sistem_mos/components/styles/text_styles.dart';
 import '../../Assets/colors.dart';
 import '../../components/cards/list_tile.dart';
 import '../../components/cards/tamamlanan_card.dart';
+import '../../components/texts/text.dart';
 //import 'package:expansion_tile_card/expansion_tile_card.dart';
 
 //import '../../components/clip_path.dart';
@@ -24,18 +26,15 @@ class _EmployeeMyTasksPageState extends State<EmployeeMyTasksPage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    //  const double pi = 3.1415926535897932;
-
-    // double screenHeight = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: ProjectPaddings.mainHorizontalPadding +
               ProjectPaddings.smallVerticalPadding,
-          child: Text(
-            "Tamamlananlar",
-            style: Theme.of(context).textTheme.headlineMedium,
+          child: const Text(
+            MosTexts.completeText,
+            style: MosTextStyles.mosMediumHeadline,
           ),
         ),
         Expanded(
@@ -54,14 +53,14 @@ class _EmployeeMyTasksPageState extends State<EmployeeMyTasksPage> {
         Padding(
           padding: ProjectPaddings.mainHorizontalPadding +
               ProjectPaddings.smallTopPadding,
-          child: Text(
-            "Bekleyenler",
-            style: Theme.of(context).textTheme.headlineMedium,
+          child: const Text(
+            MosTexts.waitingText,
+            style: MosTextStyles.mosMediumHeadline,
           ),
         ),
-        Padding(
+        const Padding(
           padding: ProjectPaddings.mainHorizontalPadding,
-          child: const Divider(
+          child: Divider(
             thickness: 2,
           ),
         ),

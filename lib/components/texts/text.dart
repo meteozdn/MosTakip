@@ -1,0 +1,30 @@
+class MosTexts {
+  //General Texts
+  static const String costumerText = "Müşteriler";
+  static const String employeeText = "Çalışanlar";
+  static const String ok = "Tamam";
+  static const String sendText = "Gönder";
+
+  //Login-Register Page Texts
+  static const String loginText = "Giriş Yap";
+  static const String usernameText = "Kullanıcı Adı";
+  static const String passwordText = "Şifre";
+  static const String notHaveAccountText = "Hesabınız Yok Mu?";
+  static const String signInText = "Kayıt Olun";
+
+  //Introduction Page Texts
+  static const String fast = "Hızlı";
+  static const String easy = "Kolay";
+  static const String security = "Güvenli";
+
+  //Employee-Company Page Texts
+  static const String completeText = "Tamamlananlar";
+  static const String waitingText = "Bekleyenler";
+
+  //Employee
+  static const String allCall = "Tüm Çağrılar";
+  static const String myCall = "Çağrılarım";
+
+  //Company
+  static const String addCallText = "Talep Oluşturun";
+}

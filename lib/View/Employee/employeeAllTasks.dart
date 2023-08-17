@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/Assets/colors.dart';
 import 'package:takip_sistem_mos/components/cards/tamamlanan_card.dart';
-import 'package:takip_sistem_mos/components/paddings.dart';
+import 'package:takip_sistem_mos/components/styles/paddings.dart';
+import 'package:takip_sistem_mos/components/styles/text_styles.dart';
 
 import '../../components/cards/list_tile.dart';
+import '../../components/texts/text.dart';
 
 //import 'package:expansion_tile_card/expansion_tile_card.dart';
 
@@ -42,9 +44,9 @@ class _EmployeeAllTasksPageState extends State<EmployeeAllTasksPage> {
         Padding(
           padding: ProjectPaddings.mainHorizontalPadding +
               ProjectPaddings.smallVerticalPadding,
-          child: Text(
-            "Tamamlananlar",
-            style: Theme.of(context).textTheme.headlineMedium,
+          child: const Text(
+            MosTexts.completeText,
+            style: MosTextStyles.mosMediumHeadline,
           ),
         ),
         Expanded(
@@ -61,9 +63,9 @@ class _EmployeeAllTasksPageState extends State<EmployeeAllTasksPage> {
         Padding(
           padding: ProjectPaddings.mainHorizontalPadding +
               ProjectPaddings.smallTopPadding,
-          child: Text(
-            "Bekleyenler",
-            style: Theme.of(context).textTheme.headlineMedium,
+          child: const Text(
+            MosTexts.waitingText,
+            style: MosTextStyles.mosMediumHeadline,
           ),
         ),
         const Padding(

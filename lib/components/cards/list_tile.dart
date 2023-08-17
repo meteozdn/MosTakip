@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:takip_sistem_mos/components/styles/text_styles.dart';
 import '../../Assets/colors.dart';
 
 class ProjectListTile extends StatelessWidget {
@@ -26,10 +27,7 @@ class ProjectListTile extends StatelessWidget {
           ),
           title: const Text(
             'Title',
-            style: TextStyle(
-              fontSize: 20,
-              color: MosDestekColors.toryBlue,
-            ),
+            style: MosTextStyles.midToryBlueTextStyle,
           ),
           subtitle: const Text(
             'Sub Title',

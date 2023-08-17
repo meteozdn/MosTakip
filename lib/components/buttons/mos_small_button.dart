@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-
-import '../../Assets/colors.dart';
+import 'package:takip_sistem_mos/components/styles/text_styles.dart';
 
 class MosSmallButton extends StatelessWidget {
   const MosSmallButton({
@@ -30,10 +29,7 @@ class MosSmallButton extends StatelessWidget {
         height: screenWidth * 0.12,
         child: Text(
           text,
-          style: const TextStyle(
-              color: MosDestekColors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
+          style: MosTextStyles.boldWhiteTextStyle,
         ),
       ),
     );

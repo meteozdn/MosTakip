@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:takip_sistem_mos/View/Admin/controller/admin_controller.dart';
+import 'package:takip_sistem_mos/View/Company/controller/company_controller.dart';
+import 'package:takip_sistem_mos/View/Company/introduction.dart';
 import 'package:takip_sistem_mos/View/Employee/controller/employee_controller.dart';
+import 'package:takip_sistem_mos/View/Employee/introduction_employee.dart';
+import 'package:takip_sistem_mos/View/Login_Register_Pages/login_page.dart';
 import '../Assets/colors.dart';
 //import 'package:takip_sistem_mos/View/Admin/calisanlar.dart';
 //import 'package:takip_sistem_mos/tests/login_test.dart';
@@ -16,7 +21,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: const EmployeeController(),
+        home: const CompanyController(),
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
               color: MosDestekColors.toryBlue,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../Assets/colors.dart';
+import 'package:takip_sistem_mos/components/styles/text_styles.dart';
 
 class MosBigButton extends StatelessWidget {
   const MosBigButton({
@@ -29,10 +29,7 @@ class MosBigButton extends StatelessWidget {
         height: screenWidth * 0.15,
         child: Text(
           text,
-          style: const TextStyle(
-              color: MosDestekColors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
+          style: MosTextStyles.boldWhiteTextStyle,
         ),
       ),
     );

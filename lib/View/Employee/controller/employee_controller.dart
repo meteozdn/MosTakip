@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../../Assets/colors.dart';
 import 'package:takip_sistem_mos/View/Employee/employeeAllTasks.dart';
 import 'package:takip_sistem_mos/View/Employee/employeeMyTasks.dart';
-import 'package:takip_sistem_mos/components/paddings.dart';
+
+import '../../../components/texts/text.dart';
 //import 'package:expansion_tile_card/expansion_tile_card.dart';
 
 //import '../../components/clip_path.dart';
@@ -27,28 +28,15 @@ class _EmployeeControllerState extends State<EmployeeController> {
             child: TabBar(
               tabs: [
                 Tab(
-                  text: "Tüm Çağrılar",
+                  text: MosTexts.allCall,
                 ),
                 Tab(
-                  text: "Çağrılarım",
+                  text: MosTexts.myCall,
                 ),
               ],
             ),
           ),
-          appBar: AppBar(
-            actions: [
-              Padding(
-                padding: ProjectPaddings.mainHorizontalPadding,
-                child: TextButton(
-                  child: Text(
-                    "Tamamladıklarım",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {},
-                ),
-              )
-            ],
-          ),
+          appBar: AppBar(),
           body: const TabBarView(children: [
             EmployeeAllTasksPage(),
             EmployeeMyTasksPage(),

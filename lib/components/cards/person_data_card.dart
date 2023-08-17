@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/Assets/colors.dart';
+import 'package:takip_sistem_mos/components/styles/text_styles.dart';
 
-import '../paddings.dart';
+import '../styles/paddings.dart';
 
 class PersonDataCard extends StatelessWidget {
   //final Color color;
@@ -38,27 +39,20 @@ class PersonDataCard extends StatelessWidget {
                   //ProjectPaddings.smallVerticalPadding / 10,
                   child: Row(
                     children: [
-                      const CircleAvatar(
+                      CircleAvatar(
                         backgroundColor: MosDestekColors.white,
                         // radius: 30,
                         child: Text(
                           "1",
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: MosDestekColors.toryBlue),
+                          style: MosTextStyles.midToryBlueTextStyle
+                              .copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Padding(
                         padding: ProjectPaddings.mainHorizontalPadding / 2,
-                        child: Text(
+                        child: const Text(
                           "Metehan Özden",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(
-                                  color: MosDestekColors.white,
-                                  fontWeight: FontWeight.bold),
+                          style: MosTextStyles.boldWhiteTextStyle,
                         ),
                       )
                     ],
@@ -75,13 +69,13 @@ class PersonDataCard extends StatelessWidget {
                 columnGeneratorMethod("Deadline"),
                 Expanded(
                   child: Container(
-                    child: columnGeneratorMethod("Toplam"),
                     decoration: const BoxDecoration(
                         border: Border(
                             left: BorderSide(
                       color: MosDestekColors.toryBlue,
                       width: 3,
                     ))),
+                    child: columnGeneratorMethod("Toplam"),
                   ),
                 )
               ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:takip_sistem_mos/Assets/colors.dart';
-import 'package:takip_sistem_mos/components/paddings.dart';
+import 'package:takip_sistem_mos/components/styles/paddings.dart';
+import 'package:takip_sistem_mos/components/styles/text_styles.dart';
+import 'package:takip_sistem_mos/components/texts/text.dart';
 
 import '../../components/cards/list_tile.dart';
 //import '../../Assets/colors.dart';
@@ -45,10 +47,8 @@ class _MusterilerPageState extends State<MusterilerPage> {
         Padding(
           padding: ProjectPaddings.mainHorizontalPadding +
               ProjectPaddings.smallVerticalPadding,
-          child: Text(
-            "Müşteriler",
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          child: const Text(MosTexts.costumerText,
+              style: MosTextStyles.mosMediumHeadline),
         ),
         Expanded(
           flex: screenHeight < 670 ? 6 : 4,

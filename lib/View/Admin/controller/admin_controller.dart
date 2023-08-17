@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../../../Assets/colors.dart';
-
-import 'package:takip_sistem_mos/components/paddings.dart';
-
+import 'package:takip_sistem_mos/components/styles/paddings.dart';
 import '../calisanlar.dart';
 import '../musteriler.dart';
 //import 'package:expansion_tile_card/expansion_tile_card.dart';
@@ -22,6 +20,8 @@ class _AdminControllerState extends State<AdminController> {
 
   @override
   Widget build(BuildContext context) {
+    const String title = "Panel";
+
     return DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -31,17 +31,17 @@ class _AdminControllerState extends State<AdminController> {
             child: TabBar(
               tabs: [
                 Tab(
-                  text: "Müşteriler",
+                  text: MosTexts.costumerText,
                 ),
                 Tab(
-                  text: "Çalışanlar",
+                  text: MosTexts.employeeText,
                 )
               ],
             ),
           ),
           appBar: AppBar(
             centerTitle: false,
-            title: Text("Panel"),
+            title: const Text(title),
             actions: const [
               Padding(
                   padding: ProjectPaddings.mainHorizontalPadding,

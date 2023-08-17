@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:takip_sistem_mos/components/styles/text_styles.dart';
+import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../../Assets/Images/images.dart';
 import '../../../Assets/colors.dart';
 import 'package:takip_sistem_mos/View/Company/controller/company_controller.dart';
@@ -25,8 +27,8 @@ class _IntroductionPageState extends State<IntroductionPage> {
       IntroductionViewWidget(
         color: MosDestekColors.tulipTree,
         description:
-            "Curabitur vitae urna nec orci placerat sodales porta quis nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce feugiat efficitur nunc eu commodo. Nullam sit amet lectus a dui finibus vestibulum. Aliquam efficitur lectus mauris, vehicula mollis mi pellentesque euismod. ",
-        title: "HIZLI",
+            " habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce feugiat efficitur nunc eu commodo. Nullam sit amet lectus a dui finibus vestibulum. Aliquam efficitur lectus mauris, vehicula mollis mi pellentesque euismod. ",
+        title: MosTexts.easy,
         screenWidth: screenWidth,
         image: AssetIllustraions.teamworkCollaboration,
         titleColor: MosDestekColors.tulipTree,
@@ -34,7 +36,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
       IntroductionViewWidget(
         description:
             "Curabitur vitae urna nec orci placerat sodales porta quis nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce feugiat efficitur nunc eu commodo. Nullam sit amet lectus a dui finibus vestibulum. Aliquam efficitur lectus mauris, vehicula mollis mi pellentesque euismod. ",
-        title: "GÜVENLİ",
+        title: MosTexts.security,
         screenWidth: screenWidth,
         image: AssetIllustraions.creative,
         color: MosDestekColors.tulipTree,
@@ -43,7 +45,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
       IntroductionViewWidget(
         description:
             "Curabitur vitae urna nec orci placerat sodales porta quis nunc. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce feugiat efficitur nunc eu commodo. Nullam sit amet lectus a dui finibus vestibulum. Aliquam efficitur lectus mauris, vehicula mollis mi pellentesque euismod. ",
-        title: "KOLAY",
+        title: MosTexts.fast,
         screenWidth: screenWidth,
         image: AssetIllustraions.idea,
         color: MosDestekColors.tulipTree,
@@ -123,8 +125,8 @@ class _IntroductionPageState extends State<IntroductionPage> {
                                     borderRadius: BorderRadius.circular(30.0))),
                           ),
                           child: const Text(
-                            "Tamam",
-                            style: TextStyle(color: MosDestekColors.white),
+                            MosTexts.ok,
+                            style: MosTextStyles.defaultWhiteTextStyle,
                           ),
                         )
                       ],
@@ -178,34 +180,24 @@ class IntroductionViewWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20),
             child: Container(
               decoration: BoxDecoration(
-                  color: MosDestekColors.toryBlue,
+                  // color: MosDestekColors.toryBlue,
                   // border: Border.all(width: 4, color: MosDestekColors.toryBlue),
-                  borderRadius: BorderRadius.circular(15)),
+                  borderRadius: BorderRadius.circular(25)),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
                     Expanded(
                       flex: 1,
-                      child: Text(title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge!
-                              .copyWith(
-                                  color: titleColor,
-                                  fontWeight: FontWeight.bold)),
+                      child:
+                          Text(title, style: MosTextStyles.mosTulipTreeTitle),
                     ),
                     Expanded(
                       flex: 3,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Text(description,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall!
-                                .copyWith(
-                                    color: MosDestekColors.white,
-                                    fontWeight: FontWeight.bold)),
+                            style: MosTextStyles.boldToryBlueTextStyle),
                       ),
                     ),
                   ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:takip_sistem_mos/components/paddings.dart';
+import 'package:takip_sistem_mos/components/styles/paddings.dart';
+import 'package:takip_sistem_mos/components/styles/text_styles.dart';
+import 'package:takip_sistem_mos/components/texts/text.dart';
 
 import '../../Assets/colors.dart';
 import '../../components/cards/list_tile.dart';
@@ -27,7 +29,6 @@ class _CalisanlarPageState extends State<CalisanlarPage> {
               child: SizedBox(
                 child: PageView.builder(
                     controller: PageController(viewportFraction: .9),
-                    //  shrinkWrap: false,
                     scrollDirection: Axis.horizontal,
                     itemCount: 2,
                     itemBuilder: (BuildContext context, int index) {
@@ -49,9 +50,9 @@ class _CalisanlarPageState extends State<CalisanlarPage> {
         Padding(
           padding: ProjectPaddings.mainHorizontalPadding +
               ProjectPaddings.smallVerticalPadding,
-          child: Text(
-            "Çalışanlar",
-            style: Theme.of(context).textTheme.headlineMedium,
+          child: const Text(
+            MosTexts.employeeText,
+            style: MosTextStyles.mosMediumHeadline,
           ),
         ),
         Expanded(

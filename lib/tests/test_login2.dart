@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../Assets/Images/images.dart';
 import '../../Assets/colors.dart';
-import 'package:takip_sistem_mos/components/paddings.dart';
+import 'package:takip_sistem_mos/components/styles/paddings.dart';
 
 import '../components/buttons/mos_big_button.dart';
 
