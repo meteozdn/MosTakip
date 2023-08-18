@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:takip_sistem_mos/View/Admin/controller/admin_controller.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../../Assets/Images/images.dart';
 import '../../../Assets/colors.dart';
@@ -97,9 +98,16 @@ class LoginPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: ProjectPaddings.midTopPadding / 2,
-                  child: const Text(
-                    MosTexts.signInText,
-                    style: MosTextStyles.boldTulipTreeTextStyle,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const AdminController(),
+                      ));
+                    },
+                    child: const Text(
+                      MosTexts.signInText,
+                      style: MosTextStyles.boldTulipTreeTextStyle,
+                    ),
                   ),
                 ),
               ],
