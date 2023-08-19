@@ -1,3 +1,7 @@
-# takip_sistem_mos
+# Mos Support App
 
-A new Flutter project.
+
+This application allows MOS Employees and customers to communicate.
+
+
+Screenshot and gifs will be uploaded when the application is complete 🥰🥰
