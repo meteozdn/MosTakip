@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:takip_sistem_mos/View/Admin/calisan_view.dart';
 import 'package:takip_sistem_mos/components/styles/paddings.dart';
 import 'package:takip_sistem_mos/components/styles/text_styles.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
@@ -65,7 +66,14 @@ class _CalisanlarPageState extends State<CalisanlarPage> {
                   //     scrollDirection: Axis.horizontal,
                   itemCount: 6,
                   itemBuilder: (BuildContext context, int index) {
-                    return ProjectListTile(icon: Icons.account_circle);
+                    return ProjectListTile(
+                      icon: Icons.account_circle,
+                      ontap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const CalisanViewPage(),
+                        ));
+                      },
+                    );
                   }),
             ),
           ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/View/Admin/controller/admin_controller.dart';
+import 'package:takip_sistem_mos/View/Company/controller/company_controller.dart';
+import 'package:takip_sistem_mos/View/Login_Register_Pages/register_page.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../../Assets/Images/images.dart';
 import '../../../Assets/colors.dart';
@@ -56,6 +58,7 @@ class LoginPage extends StatelessWidget {
                 const Padding(
                   padding: ProjectPaddings.midTopPadding,
                   child: TextField(
+                    obscureText: true,
                     decoration:
                         InputDecoration(hintText: MosTexts.passwordText),
                   ),
@@ -66,7 +69,7 @@ class LoginPage extends StatelessWidget {
                       color: MosDestekColors.toryBlue,
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const IntroductionPage(),
+                          builder: (context) => const CompanyController(),
                         ));
                       },
                       screenWidth: screenWidth,
@@ -101,7 +104,7 @@ class LoginPage extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const AdminController(),
+                        builder: (context) => const RegisterPage(),
                       ));
                     },
                     child: const Text(

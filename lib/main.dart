@@ -4,6 +4,7 @@ import 'package:takip_sistem_mos/View/Company/controller/company_controller.dart
 import 'package:takip_sistem_mos/View/Employee/controller/employee_controller.dart';
 import 'package:takip_sistem_mos/View/Employee/employeeAllTasks.dart';
 import 'package:takip_sistem_mos/View/Login_Register_Pages/login_page.dart';
+import 'package:takip_sistem_mos/View/Login_Register_Pages/register_page.dart';
 import '../Assets/colors.dart';
 
 void main() {
