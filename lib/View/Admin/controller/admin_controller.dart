@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:takip_sistem_mos/View/Admin/settings.dart';
+import 'package:takip_sistem_mos/View/Admin/controller/settings.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../../../Assets/colors.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';

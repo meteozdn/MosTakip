@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
-import '../../../../Assets/colors.dart';
+import '../../../../../Assets/colors.dart';
+import '../settings/config_settings.dart';
+import '../settings/user_settings.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -17,16 +19,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    File? images;
     const String title = "Ayarlar";
     //double screenWidth = MediaQuery.of(context).size.width;
     //   double screenHeight = MediaQuery.of(context).size.height;
-    Future pickImage() async {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      setState(() => images = imageTemporary);
-    }
 
     return DefaultTabController(
         length: 2,
@@ -49,7 +44,7 @@ class _SettingsPageState extends State<SettingsPage> {
             centerTitle: false,
             title: const Text(title),
           ),
-          body: const TabBarView(children: []),
+          body: const TabBarView(children: [ConfigSettings(), UserSettings()]),
         ));
   }
 }
