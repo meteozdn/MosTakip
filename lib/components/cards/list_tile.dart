@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takip_sistem_mos/components/styles/text_styles.dart';
+import 'package:takip_sistem_mos/styles/text_styles.dart';
 import '../../Assets/colors.dart';
 
 class ProjectListTile extends StatelessWidget {
@@ -24,6 +24,7 @@ class ProjectListTile extends StatelessWidget {
           leading: Icon(
             icon,
             color: MosDestekColors.toryBlue,
+            size: 35,
           ),
           title: const Text(
             'Title',

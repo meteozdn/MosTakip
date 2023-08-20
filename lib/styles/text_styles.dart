@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../Assets/colors.dart';
+import '../Assets/colors.dart';
 
 class MosTextStyles {
   static const defaultToryBlueTextStyle =

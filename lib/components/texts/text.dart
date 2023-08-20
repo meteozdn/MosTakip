@@ -30,6 +30,7 @@ class MosTexts {
   static const String allCall = "Tüm Çağrılar";
   static const String myCall = "Çağrılarım";
   static const String allTasks = "Yapılan İşler";
+  static const String myCompleteText = "Tamamladıklarım";
 
   //Company
   static const String addCallText = "Talep Oluşturun";

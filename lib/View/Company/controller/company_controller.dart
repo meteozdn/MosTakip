@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:takip_sistem_mos/components/styles/text_styles.dart';
+import 'package:takip_sistem_mos/styles/text_styles.dart';
 import '../../../../Assets/colors.dart';
-import 'package:takip_sistem_mos/components/styles/paddings.dart';
+import 'package:takip_sistem_mos/styles/paddings.dart';
 
 import '../../../components/buttons/mos_small_button.dart';
 import '../../../components/cards/list_tile.dart';
@@ -34,13 +34,13 @@ class _CompanyControllerState extends State<CompanyController> {
 
     @override
     List topCards = const [
-      TamamlananCard(
+      TopTaskCard(
         color: MosDestekColors.aliceBlue,
       ),
-      TamamlananCard(
+      TopTaskCard(
         color: MosDestekColors.aliceBlue,
       ),
-      TamamlananCard(
+      TopTaskCard(
         color: MosDestekColors.aliceBlue,
       ),
     ];
@@ -152,7 +152,7 @@ class _CompanyControllerState extends State<CompanyController> {
               padding: ProjectPaddings.mainHorizontalPadding +
                   ProjectPaddings.smallVerticalPadding,
               child: const Text(
-                MosTexts.completeText,
+                MosTexts.waitingText,
                 style: MosTextStyles.mosMediumHeadline,
               ),
             ),
@@ -178,7 +178,7 @@ class _CompanyControllerState extends State<CompanyController> {
               padding: ProjectPaddings.mainHorizontalPadding +
                   ProjectPaddings.smallVerticalPadding,
               child: const Text(
-                MosTexts.waitingText,
+                MosTexts.completeText,
                 style: MosTextStyles.mosMediumHeadline,
               ),
             ),
@@ -191,7 +191,7 @@ class _CompanyControllerState extends State<CompanyController> {
                   child: ListView.builder(
                       itemCount: 6,
                       itemBuilder: (BuildContext context, int index) {
-                        return ProjectListTile(icon: Icons.timer);
+                        return ProjectListTile(icon: Icons.done);
                       }),
                 ),
               ),

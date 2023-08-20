@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:takip_sistem_mos/Assets/colors.dart';
 
-import '../styles/paddings.dart';
+import '../../styles/paddings.dart';
 
-class TamamlananCard extends StatelessWidget {
+class TopTaskCard extends StatelessWidget {
   final Color color;
-  const TamamlananCard({
+  const TopTaskCard({
     super.key,
     required this.color,
   });
@@ -36,7 +37,8 @@ class TamamlananCard extends StatelessWidget {
                     children: [Text("Burak Hacıoğlu")],
                   ),
                   Icon(
-                    Icons.done,
+                    Icons.timer,
+                    color: MosDestekColors.toryBlue,
                   )
                 ],
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:takip_sistem_mos/components/styles/text_styles.dart';
+import 'package:takip_sistem_mos/styles/text_styles.dart';
 
 class MosSmallButton extends StatelessWidget {
   const MosSmallButton({

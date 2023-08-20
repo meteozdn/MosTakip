@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/Assets/colors.dart';
 import 'package:takip_sistem_mos/components/cards/tamamlanan_card.dart';
-import 'package:takip_sistem_mos/components/styles/paddings.dart';
-import 'package:takip_sistem_mos/components/styles/text_styles.dart';
+import 'package:takip_sistem_mos/styles/paddings.dart';
+import 'package:takip_sistem_mos/styles/text_styles.dart';
 
 import '../../components/cards/list_tile.dart';
 import '../../components/texts/text.dart';
@@ -29,10 +29,10 @@ class _EmployeeAllTasksPageState extends State<EmployeeAllTasksPage> {
 
     @override
     List topCards = const [
-      TamamlananCard(
+      TopTaskCard(
         color: MosDestekColors.aliceBlue,
       ),
-      TamamlananCard(
+      TopTaskCard(
         color: MosDestekColors.aliceBlue,
       ),
     ];
@@ -45,7 +45,7 @@ class _EmployeeAllTasksPageState extends State<EmployeeAllTasksPage> {
           padding: ProjectPaddings.mainHorizontalPadding +
               ProjectPaddings.smallVerticalPadding,
           child: const Text(
-            MosTexts.completeText,
+            MosTexts.waitingText,
             style: MosTextStyles.mosMediumHeadline,
           ),
         ),
@@ -64,7 +64,7 @@ class _EmployeeAllTasksPageState extends State<EmployeeAllTasksPage> {
           padding: ProjectPaddings.mainHorizontalPadding +
               ProjectPaddings.smallTopPadding,
           child: const Text(
-            MosTexts.waitingText,
+            MosTexts.myCompleteText,
             style: MosTextStyles.mosMediumHeadline,
           ),
         ),

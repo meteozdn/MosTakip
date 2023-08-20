@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:takip_sistem_mos/components/styles/text_styles.dart';
+import 'package:takip_sistem_mos/styles/text_styles.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../../Assets/Images/images.dart';
 import '../../../Assets/colors.dart';

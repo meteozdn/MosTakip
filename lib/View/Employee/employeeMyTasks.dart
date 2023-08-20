@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:takip_sistem_mos/components/styles/paddings.dart';
-import 'package:takip_sistem_mos/components/styles/text_styles.dart';
+import 'package:takip_sistem_mos/styles/paddings.dart';
+import 'package:takip_sistem_mos/styles/text_styles.dart';
 import '../../Assets/colors.dart';
 import '../../components/cards/list_tile.dart';
 import '../../components/cards/tamamlanan_card.dart';
@@ -33,7 +33,7 @@ class _EmployeeMyTasksPageState extends State<EmployeeMyTasksPage> {
           padding: ProjectPaddings.mainHorizontalPadding +
               ProjectPaddings.smallVerticalPadding,
           child: const Text(
-            MosTexts.completeText,
+            MosTexts.waitingText,
             style: MosTextStyles.mosMediumHeadline,
           ),
         ),
@@ -45,7 +45,7 @@ class _EmployeeMyTasksPageState extends State<EmployeeMyTasksPage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: 3,
                   itemBuilder: (BuildContext context, int index) {
-                    return const TamamlananCard(
+                    return const TopTaskCard(
                       color: MosDestekColors.pip,
                     );
                   }),
@@ -54,7 +54,7 @@ class _EmployeeMyTasksPageState extends State<EmployeeMyTasksPage> {
           padding: ProjectPaddings.mainHorizontalPadding +
               ProjectPaddings.smallTopPadding,
           child: const Text(
-            MosTexts.waitingText,
+            MosTexts.myCompleteText,
             style: MosTextStyles.mosMediumHeadline,
           ),
         ),

@@ -5,9 +5,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:takip_sistem_mos/View/Admin/settings.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../../../Assets/colors.dart';
-import 'package:takip_sistem_mos/components/styles/paddings.dart';
+import 'package:takip_sistem_mos/styles/paddings.dart';
 import '../../../components/buttons/mos_small_button.dart';
-import '../../../components/styles/text_styles.dart';
+import '../../../styles/text_styles.dart';
 import '../calisanlar.dart';
 import '../musteriler.dart';
 
