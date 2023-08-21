@@ -4,7 +4,6 @@ import 'package:takip_sistem_mos/Assets/colors.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
-
 import '../../components/cards/list_tile.dart';
 //import '../../Assets/colors.dart';
 
@@ -33,7 +32,7 @@ class _MusterilerPageState extends State<MusterilerPage> {
     double screenHeight = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         Expanded(
             flex: screenHeight < 670 ? 7 : 4, child: firmalarCircularChart()),
         const Padding(
@@ -60,7 +59,10 @@ class _MusterilerPageState extends State<MusterilerPage> {
                   //     scrollDirection: Axis.horizontal,
                   itemCount: 6,
                   itemBuilder: (BuildContext context, int index) {
-                    return ProjectListTile(icon: Icons.account_circle);
+                    return ProjectListTile(
+                        title: "Müşteri${index}",
+                        subTitle: "Müşteri aciklama${index}",
+                        icon: Icons.account_circle);
                   }),
             ),
           ),
@@ -92,7 +94,7 @@ class _MusterilerPageState extends State<MusterilerPage> {
       GDPData('Evas', 12),
       GDPData('xy', 10),
       GDPData('zt', 30),
-      GDPData('ab', 15)
+      GDPData('ab', 15),
     ];
     return chartData;
   }
@@ -102,5 +104,4 @@ class GDPData {
   GDPData(this.continent, this.gdp);
   final String continent;
   final double gdp;
-  //final Color color;
 }

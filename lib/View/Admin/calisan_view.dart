@@ -9,8 +9,8 @@ import '../../components/cards/list_tile.dart';
 //import '../../Assets/colors.dart';
 
 class CalisanViewPage extends StatefulWidget {
-  const CalisanViewPage({super.key});
-
+  const CalisanViewPage({super.key, required this.calisanName});
+  final String calisanName;
   @override
   State<CalisanViewPage> createState() => _CalisanViewPageState();
 }
@@ -31,7 +31,10 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
     //double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: false,
+        title: Text(widget.calisanName),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -70,7 +73,10 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
                     //     scrollDirection: Axis.horizontal,
                     itemCount: 6,
                     itemBuilder: (BuildContext context, int index) {
-                      return ProjectListTile(icon: Icons.account_circle);
+                      return ProjectListTile(
+                          title: "Yapilan is${index}",
+                          subTitle: "is aciklama${index}",
+                          icon: Icons.account_circle);
                     }),
               ),
             ),
@@ -99,11 +105,9 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
 
   List<GDPData> getChartData() {
     final List<GDPData> chartData = [
-      GDPData('Kalyon', 10),
-      GDPData('Evas', 12),
-      GDPData('xy', 10),
-      GDPData('zt', 30),
-      GDPData('ab', 15)
+      GDPData('Kalyon', 15),
+      GDPData('Evas', 3),
+      GDPData('İç görevler', 6),
     ];
     return chartData;
   }

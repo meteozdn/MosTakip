@@ -26,7 +26,7 @@ class MosBigButton extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(30)),
         ),
         //  width: screenWidth * 1.5,
-        height: screenWidth * 0.15,
+        //  height: screenWidth * 0.1,
         child: Text(
           text,
           style: MosTextStyles.boldWhiteTextStyle,

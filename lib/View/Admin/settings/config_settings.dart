@@ -34,7 +34,6 @@ class _ConfigSettingsState extends State<ConfigSettings> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         // resizeToAvoidBottomInset: false,
-
         body: SizedBox(
           width: screenWidth,
           height: screenHeight,

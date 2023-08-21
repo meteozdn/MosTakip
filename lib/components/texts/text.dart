@@ -13,7 +13,6 @@ class MosTexts {
   static const String alreadyHaveAccountText = "Hesabınız Var Mı?";
   static const String signInText = "Kayıt Olun";
   static const String email = "Email";
-
   static const String name = "İsim";
   static const String surname = "Soyisim";
 

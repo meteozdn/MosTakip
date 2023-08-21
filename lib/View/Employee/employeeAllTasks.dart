@@ -82,7 +82,10 @@ class _EmployeeAllTasksPageState extends State<EmployeeAllTasksPage> {
               child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (BuildContext context, int index) {
-                    return ProjectListTile(icon: Icons.timer);
+                    return ProjectListTile(
+                        title: "Tamamlanan İs${index}",
+                        subTitle: "Tamamlanan İs${index}",
+                        icon: Icons.timer);
                   }),
             ),
           ),

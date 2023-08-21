@@ -1,8 +1,7 @@
-class Costumer {
+class Company {
   final int id;
-
   final String name, logo, country, city, key;
-  Costumer({
+  Company({
     required this.id,
     required this.name,
     required this.logo,

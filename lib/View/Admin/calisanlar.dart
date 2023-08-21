@@ -1,9 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/View/Admin/calisan_view.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
-
+import 'package:http/http.dart' as http;
 import '../../Assets/colors.dart';
 import '../../components/cards/list_tile.dart';
 import '../../components/cards/person_data_card.dart';
@@ -16,6 +17,13 @@ class CalisanlarPage extends StatefulWidget {
 }
 
 class _CalisanlarPageState extends State<CalisanlarPage> {
+  @override
+  void initState() {
+    super.initState();
+    fetchCompany();
+  }
+
+  Map<String, dynamic> users = {};
   @override
   Widget build(BuildContext context) {
     //  double screenWidth = MediaQuery.of(context).size.width;
@@ -67,11 +75,16 @@ class _CalisanlarPageState extends State<CalisanlarPage> {
                   itemCount: 6,
                   itemBuilder: (BuildContext context, int index) {
                     return ProjectListTile(
+                      title: users['name'],
+                      subTitle: "Calisan Aciklama",
                       icon: Icons.account_circle,
                       ontap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const CalisanViewPage(),
-                        ));
+                        //    Navigator.of(context).push(MaterialPageRoute(
+                        //      builder: (context) => CalisanViewPage(
+                        //       calisanName: "Calisan${index}",
+                        //    ),
+                        //  ));
+                        fetchCompany();
                       },
                     );
                   }),
@@ -80,5 +93,18 @@ class _CalisanlarPageState extends State<CalisanlarPage> {
         ),
       ],
     );
+  }
+
+  void fetchCompany() async {
+    print("http req");
+    final url = "https://64e3ac1abac46e480e791292.mockapi.io/Employee";
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+    final body = response.body;
+    final json = jsonDecode(body);
+    setState(() {
+      users = json[1];
+    });
+    print(users['name']);
   }
 }

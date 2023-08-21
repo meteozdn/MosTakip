@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/Assets/colors.dart';
+import 'package:takip_sistem_mos/styles/text_styles.dart';
 
 import '../../styles/paddings.dart';
 
@@ -23,7 +24,7 @@ class TopTaskCard extends StatelessWidget {
       ], color: color, borderRadius: BorderRadius.circular(15)),
       //color: Colors.red,
       // height: 150,
-      width: 150,
+      width: 170,
       child: Column(
         children: [
           Expanded(
@@ -34,7 +35,12 @@ class TopTaskCard extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 children: [
                   Row(
-                    children: [Text("Burak Hacıoğlu")],
+                    children: [
+                      Text(
+                        "Burak Hacıoğlu",
+                        style: MosTextStyles.boldToryBlueTextStyle,
+                      )
+                    ],
                   ),
                   Icon(
                     Icons.timer,
@@ -48,9 +54,11 @@ class TopTaskCard extends StatelessWidget {
             flex: 2,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [Text("madde açıklaması,")],
+              child: Text(
+                "madde açıklamasıaç ıklamasıaç ıklaması,",
+                overflow: TextOverflow.fade,
+                maxLines: 3,
+                softWrap: true,
               ),
             ),
           ),
@@ -61,7 +69,10 @@ class TopTaskCard extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(right: 10.0),
-                  child: Text("11.12.2023"),
+                  child: Text(
+                    "11.12.2023",
+                    style: MosTextStyles.boldToryBlueTextStyle,
+                  ),
                 )
               ],
             ),

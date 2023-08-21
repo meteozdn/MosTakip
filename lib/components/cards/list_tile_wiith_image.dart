@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
+import '../../Assets/Images/images.dart';
 import '../../Assets/colors.dart';
 
-class ProjectListTile extends StatelessWidget {
-  ProjectListTile({
+class ImageListTile extends StatelessWidget {
+  ImageListTile({
     this.ontap,
     required this.icon,
     required this.title,
@@ -26,10 +27,9 @@ class ProjectListTile extends StatelessWidget {
         elevation: 5,
         shadowColor: Colors.black,
         child: ListTile(
-          leading: Icon(
-            icon,
-            color: MosDestekColors.toryBlue,
-            size: 35,
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AssetIllustraions.creative,
           ),
           title: Text(
             title,

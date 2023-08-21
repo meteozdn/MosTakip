@@ -13,7 +13,6 @@ import '../../../components/texts/text.dart';
 
 class CompanyController extends StatefulWidget {
   const CompanyController({super.key});
-
   @override
   State<CompanyController> createState() => _CompanyControllerState();
 }
@@ -48,93 +47,7 @@ class _CompanyControllerState extends State<CompanyController> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: MosDestekColors.toryBlue,
           onPressed: () {
-            showDialog(
-                context: context,
-                builder: (_) => AlertDialog(
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      title: const Text(
-                        MosTexts.addCallText,
-                        style: MosTextStyles.boldToryBlueTextStyle,
-                      ),
-                      content: SizedBox(
-                        height: screenWidth / 1.3,
-                        child: Column(
-                          children: [
-                            const Expanded(
-                              flex: 3,
-                              child: TextField(
-                                maxLines: 7,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding: ProjectPaddings.smallTopPadding,
-                                child: Stack(
-                                  alignment: Alignment.centerRight,
-                                  children: [
-                                    Container(
-                                      width: screenWidth,
-                                      height: 60,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          border: Border.all()),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: SizedBox(
-                                              height: 40,
-                                              width: 40,
-                                              //color: Colors.red,
-                                              child: images != null
-                                                  ? Image.file(images!)
-                                                  : Container(
-                                                      //  color: Colors.red,
-                                                      ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Transform.scale(
-                                        scale: 0.7,
-                                        child: FloatingActionButton(
-                                            backgroundColor:
-                                                MosDestekColors.toryBlue,
-                                            child: const Icon(Icons.camera_alt),
-                                            onPressed: () {
-                                              setState(() {
-                                                pickImage();
-                                              });
-                                            }))
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Padding(
-                                padding: ProjectPaddings.smallTopPadding,
-                                child: MosSmallButton(
-                                    onTap: () {},
-                                    screenWidth: screenWidth,
-                                    text: MosTexts.sendText,
-                                    color: MosDestekColors.toryBlue),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ));
+            showDialogWidget(context, screenWidth, pickImage);
           },
           child: const Icon(Icons.add),
         ),
@@ -191,12 +104,104 @@ class _CompanyControllerState extends State<CompanyController> {
                   child: ListView.builder(
                       itemCount: 6,
                       itemBuilder: (BuildContext context, int index) {
-                        return ProjectListTile(icon: Icons.done);
+                        return ProjectListTile(
+                            title: "Tamamlanan İs${index}",
+                            subTitle: "Tamamlanan İs subtitle${index}",
+                            icon: Icons.done);
                       }),
                 ),
               ),
             ),
           ],
         ));
+  }
+
+  Future<dynamic> showDialogWidget(
+      BuildContext context, double screenWidth, Future<dynamic> pickImage()) {
+    return showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
+              title: const Text(
+                MosTexts.addCallText,
+                style: MosTextStyles.boldToryBlueTextStyle,
+              ),
+              content: SizedBox(
+                height: screenWidth / 1.3,
+                child: Column(
+                  children: [
+                    const Expanded(
+                      flex: 4,
+                      child: TextField(
+                        style: TextStyle(),
+                        maxLines: 7,
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: ProjectPaddings.smallTopPadding,
+                        child: Stack(
+                          alignment: Alignment.centerRight,
+                          children: [
+                            Container(
+                              width: screenWidth,
+                              height: 70,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all()),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      //color: Colors.red,
+                                      child: Container(
+                                        child: images != null
+                                            ? Image.file(images!)
+                                            : Container(
+                                                // color: Colors.red,
+                                                ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Transform.scale(
+                                scale: 0.7,
+                                child: FloatingActionButton(
+                                    backgroundColor: MosDestekColors.toryBlue,
+                                    child: const Icon(Icons.camera_alt),
+                                    onPressed: () {
+                                      setState(() {
+                                        pickImage();
+                                      });
+                                    }))
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: ProjectPaddings.smallTopPadding,
+                        child: MosSmallButton(
+                            onTap: () {},
+                            screenWidth: screenWidth,
+                            text: MosTexts.sendText,
+                            color: MosDestekColors.toryBlue),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ));
   }
 }

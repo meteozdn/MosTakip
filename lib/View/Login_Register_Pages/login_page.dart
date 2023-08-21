@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sql_conn/sql_conn.dart';
 import 'package:takip_sistem_mos/View/Admin/controller/admin_controller.dart';
 import 'package:takip_sistem_mos/View/Company/controller/company_controller.dart';
 import 'package:takip_sistem_mos/View/Login_Register_Pages/register_page.dart';
@@ -61,7 +62,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.08,
+                  height: screenHeight * 0.07,
                   child: MosBigButton(
                       color: MosDestekColors.toryBlue,
                       onTap: () {
@@ -97,6 +98,7 @@ class LoginPage extends StatelessWidget {
                   ]),
                 ),
                 Expanded(
+                  flex: 2,
                   child: Padding(
                     padding: ProjectPaddings.smallVerticalPadding,
                     child: GestureDetector(
