@@ -7,8 +7,8 @@ class AssetImagesLogo {
       const Image(image: AssetImage('lib/Assets/Images/2175137.jpg'));
   static Image mosLogo1 = const Image(
     image: AssetImage('lib/Assets/Images/MOSLOGO1.png'),
-    height: 500,
-    width: 500,
+    height: 300,
+    width: 300,
   );
 }
 

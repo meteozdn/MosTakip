@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 import '../../../../Assets/colors.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';
@@ -24,12 +23,6 @@ class _CompanyControllerState extends State<CompanyController> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     const String title = "Çağrı Talebi Oluşturun";
-    Future pickImage() async {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      setState(() => images = imageTemporary);
-    }
 
     @override
     List topCards = const [
@@ -47,7 +40,7 @@ class _CompanyControllerState extends State<CompanyController> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: MosDestekColors.toryBlue,
           onPressed: () {
-            showDialogWidget(context, screenWidth, pickImage);
+            showDialogWidget(context, screenWidth);
           },
           child: const Icon(Icons.add),
         ),
@@ -117,7 +110,9 @@ class _CompanyControllerState extends State<CompanyController> {
   }
 
   Future<dynamic> showDialogWidget(
-      BuildContext context, double screenWidth, Future<dynamic> pickImage()) {
+    BuildContext context,
+    double screenWidth,
+  ) {
     return showDialog(
         context: context,
         builder: (_) => AlertDialog(
@@ -152,38 +147,7 @@ class _CompanyControllerState extends State<CompanyController> {
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
                                   border: Border.all()),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      //color: Colors.red,
-                                      child: Container(
-                                        child: images != null
-                                            ? Image.file(images!)
-                                            : Container(
-                                                // color: Colors.red,
-                                                ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
                             ),
-                            Transform.scale(
-                                scale: 0.7,
-                                child: FloatingActionButton(
-                                    backgroundColor: MosDestekColors.toryBlue,
-                                    child: const Icon(Icons.camera_alt),
-                                    onPressed: () {
-                                      setState(() {
-                                        pickImage();
-                                      });
-                                    }))
                           ],
                         ),
                       ),

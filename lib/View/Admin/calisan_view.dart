@@ -1,27 +1,35 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:takip_sistem_mos/Assets/colors.dart';
 import 'package:takip_sistem_mos/components/cards/person_data_card.dart';
+import 'package:takip_sistem_mos/models/task_model.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../components/cards/list_tile.dart';
+import '../../models/employee.dart';
+import '../../services/services.dart';
 //import '../../Assets/colors.dart';
 
 class CalisanViewPage extends StatefulWidget {
-  const CalisanViewPage({super.key, required this.calisanName});
-  final String calisanName;
+  const CalisanViewPage({super.key, required this.employee});
+  final Employee employee;
+
   @override
   State<CalisanViewPage> createState() => _CalisanViewPageState();
 }
 
 class _CalisanViewPageState extends State<CalisanViewPage> {
-  late List<GDPData> _chartData;
+  List<TaskModel> employeeTasks = [];
+  List<GDPData> _chartData = [];
   late TooltipBehavior _tooltipBehavior;
 
   @override
   void initState() {
-    _chartData = getChartData();
+    fetchCompanies();
+
     _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
   }
@@ -33,7 +41,7 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: Text(widget.calisanName),
+        title: Text(widget.employee.name),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +53,10 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
                   Padding(
                       padding: ProjectPaddings.mainHorizontalPadding +
                           ProjectPaddings.smallVerticalPadding,
-                      child: const PersonDataCard()),
+                      child: PersonDataCard(
+                        employee: widget.employee,
+                        isCircularAvatar: true,
+                      )),
                   firmalarCircularChart(),
                 ],
               )),
@@ -71,12 +82,20 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
                 //  height: screenHeight * 0.7,
                 child: ListView.builder(
                     //     scrollDirection: Axis.horizontal,
-                    itemCount: 6,
+                    itemCount: employeeTasks.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ProjectListTile(
-                          title: "Yapilan is${index}",
-                          subTitle: "is aciklama${index}",
-                          icon: Icons.account_circle);
+                          ontap: () {
+                            print(employeeTasks[index].isDone);
+                          },
+                          color: employeeTasks[index].isDone
+                              ? Colors.green
+                              : Colors.red,
+                          title: employeeTasks[index].description,
+                          subTitle: employeeTasks[index].respUserID.toString(),
+                          icon: employeeTasks[index].isDone
+                              ? Icons.check
+                              : Icons.close);
                     }),
               ),
             ),
@@ -110,6 +129,26 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
       GDPData('İç görevler', 6),
     ];
     return chartData;
+  }
+
+  void fetchCompanies() async {
+    const url = Services.tasksUrl;
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+    final body = response.body;
+    final json = jsonDecode(body);
+
+    setState(() {
+      for (var element in json) {
+        // print(element['employee_Id']);
+        if (element['employee_Id'] == widget.employee.id) {
+          employeeTasks.add(TaskModel.toTask(element));
+        }
+
+        //  companiesData.add(GDPData.toGDPData(element));
+      }
+    });
+    _chartData = getChartData();
   }
 }
 

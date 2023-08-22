@@ -6,15 +6,17 @@ import '../../Assets/colors.dart';
 class ImageListTile extends StatelessWidget {
   ImageListTile({
     this.ontap,
-    required this.icon,
+    required this.imagePath,
     required this.title,
     required this.subTitle,
+    this.isCircularAvatar = false,
     super.key,
   });
   final Function()? ontap;
-  final IconData icon;
+  final String imagePath;
   final String title;
   final String subTitle;
+  bool isCircularAvatar;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +29,13 @@ class ImageListTile extends StatelessWidget {
         elevation: 5,
         shadowColor: Colors.black,
         child: ListTile(
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: AssetIllustraions.creative,
-          ),
+          leading: isCircularAvatar
+              ? CircleAvatar(
+                  radius: 30,
+                  backgroundImage: NetworkImage(imagePath),
+                )
+              : SizedBox(
+                  width: 50, height: 50, child: Image.network(imagePath)),
           title: Text(
             title,
             style: MosTextStyles.midToryBlueTextStyle,

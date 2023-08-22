@@ -1,10 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:takip_sistem_mos/Assets/colors.dart';
+import 'package:takip_sistem_mos/components/cards/list_tile_wiith_image.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../components/cards/list_tile.dart';
+import '../../models/costumer.dart';
+import '../../models/employee.dart';
+import '../../services/services.dart';
+import 'package:http/http.dart' as http;
+
 //import '../../Assets/colors.dart';
 
 class MusterilerPage extends StatefulWidget {
@@ -15,16 +23,20 @@ class MusterilerPage extends StatefulWidget {
 }
 
 class _MusterilerPageState extends State<MusterilerPage> {
-  late List<GDPData> _chartData;
+  // late List<GDPData> _chartData;
   late TooltipBehavior _tooltipBehavior;
 
   @override
   void initState() {
     // TODO: implement initState
-    _chartData = getChartData();
+    fetchCompanies();
+    //_chartData = getChartData();
     _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
   }
+
+  List<Company> companies = [];
+  List<GDPData> companiesData = [];
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +69,14 @@ class _MusterilerPageState extends State<MusterilerPage> {
               //  height: screenHeight * 0.7,
               child: ListView.builder(
                   //     scrollDirection: Axis.horizontal,
-                  itemCount: 6,
+                  itemCount: companies.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ProjectListTile(
-                        title: "Müşteri${index}",
-                        subTitle: "Müşteri aciklama${index}",
-                        icon: Icons.account_circle);
+                    return ImageListTile(
+                        //  isCircularAvatar: true,
+                        title: companies[index].name,
+                        subTitle:
+                            "${companies[index].country}/${companies[index].city}",
+                        imagePath: companies[index].image);
                   }),
             ),
           ),
@@ -80,7 +94,7 @@ class _MusterilerPageState extends State<MusterilerPage> {
         PieSeries<GDPData, String>(
           dataLabelSettings: const DataLabelSettings(isVisible: true),
           enableTooltip: true,
-          dataSource: _chartData,
+          dataSource: companiesData,
           xValueMapper: (GDPData data, _) => data.continent,
           yValueMapper: (GDPData data, _) => data.gdp,
         )
@@ -90,7 +104,7 @@ class _MusterilerPageState extends State<MusterilerPage> {
 
   List<GDPData> getChartData() {
     final List<GDPData> chartData = [
-      GDPData('Kalyon', 10),
+      GDPData(companies[1].name, 10),
       GDPData('Evas', 12),
       GDPData('xy', 10),
       GDPData('zt', 30),
@@ -98,10 +112,29 @@ class _MusterilerPageState extends State<MusterilerPage> {
     ];
     return chartData;
   }
+
+  void fetchCompanies() async {
+    const url = Services.companyUrl;
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+    final body = response.body;
+    final json = jsonDecode(body);
+
+    setState(() {
+      for (var element in json) {
+        companies.add(Company.toCompany(element));
+        companiesData.add(GDPData.toGDPData(element));
+      }
+    });
+  }
 }
 
 class GDPData {
   GDPData(this.continent, this.gdp);
   final String continent;
   final double gdp;
+
+  static toGDPData(map) {
+    return GDPData(map['name'], 10);
+  }
 }

@@ -5,6 +5,7 @@ import '../../Assets/colors.dart';
 class ProjectListTile extends StatelessWidget {
   ProjectListTile({
     this.ontap,
+    this.color,
     required this.icon,
     required this.title,
     required this.subTitle,
@@ -14,6 +15,7 @@ class ProjectListTile extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subTitle;
+  Color? color = MosDestekColors.toryBlue;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class ProjectListTile extends StatelessWidget {
         child: ListTile(
           leading: Icon(
             icon,
-            color: MosDestekColors.toryBlue,
+            color: color,
             size: 35,
           ),
           title: Text(

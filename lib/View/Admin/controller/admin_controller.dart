@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'package:takip_sistem_mos/View/Admin/controller/settings.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../../../Assets/colors.dart';
@@ -27,12 +27,6 @@ class _AdminControllerState extends State<AdminController> {
     const String title = "Panel";
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    Future pickImage() async {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imageTemporary = File(image.path);
-      setState(() => images = imageTemporary);
-    }
 
     return DefaultTabController(
         length: 2,
@@ -58,60 +52,6 @@ class _AdminControllerState extends State<AdminController> {
                                 flex: 3,
                                 child: TextField(
                                   maxLines: 7,
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Padding(
-                                  padding: ProjectPaddings.smallTopPadding,
-                                  child: Stack(
-                                    alignment: Alignment.centerRight,
-                                    children: [
-                                      Container(
-                                        width: screenWidth,
-                                        height: 60,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            border: Border.all()),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10),
-                                              child: SizedBox(
-                                                height: 40,
-                                                width: 40,
-                                                //color: Colors.red,
-                                                child: images != null
-                                                    ? Image.file(images!)
-                                                    : Container(
-                                                        //  color: Colors.red,
-                                                        ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Transform.scale(
-                                          scale: 0.7,
-                                          child: FloatingActionButton(
-                                              backgroundColor:
-                                                  MosDestekColors.toryBlue,
-                                              child:
-                                                  const Icon(Icons.camera_alt),
-                                              onPressed: () {
-                                                setState(() {
-                                                  pickImage();
-                                                });
-                                              }))
-                                    ],
-                                  ),
                                 ),
                               ),
                               Expanded(

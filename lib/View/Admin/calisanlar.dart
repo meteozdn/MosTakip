@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/View/Admin/calisan_view.dart';
+import 'package:takip_sistem_mos/models/employee.dart';
+import 'package:takip_sistem_mos/services/services.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
 import 'package:http/http.dart' as http;
 import '../../Assets/colors.dart';
 import '../../components/cards/list_tile.dart';
+import '../../components/cards/list_tile_wiith_image.dart';
 import '../../components/cards/person_data_card.dart';
 
 class CalisanlarPage extends StatefulWidget {
@@ -20,10 +23,10 @@ class _CalisanlarPageState extends State<CalisanlarPage> {
   @override
   void initState() {
     super.initState();
-    fetchCompany();
+    fetchEmployee();
   }
 
-  Map<String, dynamic> users = {};
+  List<Employee> employees = [];
   @override
   Widget build(BuildContext context) {
     //  double screenWidth = MediaQuery.of(context).size.width;
@@ -39,11 +42,14 @@ class _CalisanlarPageState extends State<CalisanlarPage> {
                 child: PageView.builder(
                     controller: PageController(viewportFraction: .9),
                     scrollDirection: Axis.horizontal,
-                    itemCount: 2,
+                    itemCount: employees.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
                         padding: ProjectPaddings.mainHorizontalPadding / 2.5,
-                        child: PersonDataCard(),
+                        child: PersonDataCard(
+                          employee: employees[index],
+                          text: (index + 1).toString(),
+                        ),
                       );
                     }),
               ),
@@ -72,19 +78,20 @@ class _CalisanlarPageState extends State<CalisanlarPage> {
               //  height: screenHeight * 0.7,
               child: ListView.builder(
                   //     scrollDirection: Axis.horizontal,
-                  itemCount: 6,
+                  itemCount: employees.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ProjectListTile(
-                      title: users['name'],
-                      subTitle: "Calisan Aciklama",
-                      icon: Icons.account_circle,
+                    return ImageListTile(
+                      isCircularAvatar: true,
+                      title: employees[index].name,
+                      subTitle: employees[index].email,
+                      imagePath: (employees[index].avatar),
                       ontap: () {
-                        //    Navigator.of(context).push(MaterialPageRoute(
-                        //      builder: (context) => CalisanViewPage(
-                        //       calisanName: "Calisan${index}",
-                        //    ),
-                        //  ));
-                        fetchCompany();
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => CalisanViewPage(
+                            employee: employees[index],
+                          ),
+                        ));
+                        //  fetchCompany();
                       },
                     );
                   }),
@@ -95,16 +102,16 @@ class _CalisanlarPageState extends State<CalisanlarPage> {
     );
   }
 
-  void fetchCompany() async {
-    print("http req");
-    final url = "https://64e3ac1abac46e480e791292.mockapi.io/Employee";
+  void fetchEmployee() async {
+    const url = Services.employeesUrl;
     final uri = Uri.parse(url);
     final response = await http.get(uri);
     final body = response.body;
     final json = jsonDecode(body);
     setState(() {
-      users = json[1];
+      for (var element in json) {
+        employees.add(Employee.toEmployee(element));
+      }
     });
-    print(users['name']);
   }
 }

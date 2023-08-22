@@ -26,8 +26,7 @@ class LoginPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Padding(
         padding: screenWidth < 400
-            ? ProjectPaddings.mainHorizontalPadding +
-                ProjectPaddings.midTopPadding * 2
+            ? ProjectPaddings.mainHorizontalPadding
             : ProjectPaddings.mainHorizontalPadding +
                 ProjectPaddings.midTopPadding * 2,
         child: SafeArea(
@@ -36,7 +35,7 @@ class LoginPage extends StatelessWidget {
               //mainAxisAlignment: MainAxisAlignment,
               children: [
                 Expanded(
-                  flex: 2,
+                  flex: 4,
                   child: SizedBox(
                     //  color: Colors.red,
                     height: screenWidth / 2,
@@ -46,14 +45,14 @@ class LoginPage extends StatelessWidget {
                 ),
                 //  Text("Giriş Yap"),
                 const Expanded(
-                  //   flex: 2,
+                  flex: 1,
                   child: TextField(
                     decoration:
                         InputDecoration(hintText: MosTexts.usernameText),
                   ),
                 ),
                 Expanded(
-                  // flex: 2,
+                  flex: 1,
                   child: TextFormField(
                     obscureText: true,
                     decoration: const InputDecoration(
@@ -61,8 +60,8 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight * 0.07,
+                Expanded(
+                  flex: 1,
                   child: MosBigButton(
                       color: MosDestekColors.toryBlue,
                       onTap: () {
@@ -74,8 +73,7 @@ class LoginPage extends StatelessWidget {
                       text: MosTexts.loginText),
                 ),
                 Padding(
-                  padding: ProjectPaddings.smallVerticalPadding * 2 +
-                      ProjectPaddings.mainHorizontalPadding,
+                  padding: ProjectPaddings.midTopPadding * 2,
                   child: const Row(children: [
                     Expanded(
                         child: Padding(
@@ -98,7 +96,7 @@ class LoginPage extends StatelessWidget {
                   ]),
                 ),
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Padding(
                     padding: ProjectPaddings.smallVerticalPadding,
                     child: GestureDetector(

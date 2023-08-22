@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/Assets/colors.dart';
+import 'package:takip_sistem_mos/models/employee.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 
 import '../../styles/paddings.dart';
 
 class PersonDataCard extends StatelessWidget {
-  //final Color color;
-  const PersonDataCard({
+  final Employee employee;
+  String? text;
+  bool isCircularAvatar;
+  PersonDataCard({
+    this.isCircularAvatar = false,
+    required this.employee,
+    this.text,
     super.key,
     // required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       // margin: const EdgeInsets.only(left: 20, bottom: 5, top: 5),
       decoration: BoxDecoration(
@@ -24,42 +32,51 @@ class PersonDataCard extends StatelessWidget {
       //  width: 150,
       child: Column(
         children: [
-          Stack(
-            children: [
-              Container(
-                //height: 150,
-                decoration: BoxDecoration(
-                    border:
-                        Border.all(color: MosDestekColors.toryBlue, width: 3),
-                    color: MosDestekColors.toryBlue,
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(10))),
-                child: Padding(
-                  padding: ProjectPaddings.mainHorizontalPadding / 3,
-                  //ProjectPaddings.smallVerticalPadding / 10,
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: MosDestekColors.white,
-                        // radius: 30,
-                        child: Text(
-                          "1",
-                          style: MosTextStyles.midToryBlueTextStyle
-                              .copyWith(fontWeight: FontWeight.bold),
+          SizedBox(
+            width: screenWidth,
+            child: Stack(
+              children: [
+                Container(
+                  //height: 150,
+                  decoration: BoxDecoration(
+                      border:
+                          Border.all(color: MosDestekColors.toryBlue, width: 3),
+                      color: MosDestekColors.toryBlue,
+                      borderRadius: const BorderRadius.vertical(
+                          top: Radius.circular(10))),
+                  child: Padding(
+                    padding: ProjectPaddings.mainHorizontalPadding / 3,
+                    //ProjectPaddings.smallVerticalPadding / 10,
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: MosDestekColors.white,
+                          // radius: 30,
+                          child: isCircularAvatar
+                              ? CircleAvatar(
+                                  radius: 30,
+                                  backgroundImage:
+                                      NetworkImage(employee.avatar),
+                                )
+                              : Text(
+                                  text != null ? text! : "1",
+                                  style: MosTextStyles.midToryBlueTextStyle
+                                      .copyWith(fontWeight: FontWeight.bold),
+                                ),
                         ),
-                      ),
-                      Padding(
-                        padding: ProjectPaddings.mainHorizontalPadding / 2,
-                        child: const Text(
-                          "Metehan Özden",
-                          style: MosTextStyles.boldWhiteTextStyle,
-                        ),
-                      )
-                    ],
+                        Padding(
+                          padding: ProjectPaddings.mainHorizontalPadding / 2,
+                          child: Text(
+                            employee.name,
+                            style: MosTextStyles.boldWhiteTextStyle,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
           Expanded(
             child: Row(
@@ -91,7 +108,20 @@ class PersonDataCard extends StatelessWidget {
       padding: const EdgeInsets.all(5.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [Text(title), Text(title), Text(title)],
+        children: [
+          Text(
+            title,
+            style: MosTextStyles.boldToryBlueTextStyle,
+          ),
+          Text(
+            title,
+            // style: MosTextStyles.,
+          ),
+          Text(
+            title,
+            // style: MosTextStyles.boldToryBlueTextStyle,
+          )
+        ],
       ),
     );
   }
