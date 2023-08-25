@@ -20,11 +20,11 @@ class TaskModel {
   static toTask(map) {
     return TaskModel(
         id: int.parse(map['cagriId']),
-        reqUserID: map['employee_Id'],
-        respUserID: map['musteriId'],
+        reqUserID: map['musteriId'],
+        respUserID: map['employee_Id'],
         isRespOnTime: true,
         isDone: map['isDone'],
-        isInDeadline: true,
+        isInDeadline: map['isDeadline'],
         description: map['description']);
   }
 }

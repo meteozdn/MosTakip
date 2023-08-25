@@ -10,6 +10,7 @@ import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../components/cards/list_tile.dart';
 import '../../models/costumer.dart';
 import '../../models/employee.dart';
+import '../../models/task_model.dart';
 import '../../services/services.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,17 +26,18 @@ class MusterilerPage extends StatefulWidget {
 class _MusterilerPageState extends State<MusterilerPage> {
   // late List<GDPData> _chartData;
   late TooltipBehavior _tooltipBehavior;
-
   @override
   void initState() {
-    // TODO: implement initState
-    fetchCompanies();
-    //_chartData = getChartData();
-    _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
+    _tooltipBehavior = TooltipBehavior(enable: true);
+
+    fetchData();
   }
 
   List<Company> companies = [];
+  List<GDPData> _chartData = [];
+  Map<String, int> _companiesWcount = {};
+  List<TaskModel> tasks = [];
   List<GDPData> companiesData = [];
 
   @override
@@ -94,7 +96,7 @@ class _MusterilerPageState extends State<MusterilerPage> {
         PieSeries<GDPData, String>(
           dataLabelSettings: const DataLabelSettings(isVisible: true),
           enableTooltip: true,
-          dataSource: companiesData,
+          dataSource: _chartData,
           xValueMapper: (GDPData data, _) => data.continent,
           yValueMapper: (GDPData data, _) => data.gdp,
         )
@@ -102,30 +104,40 @@ class _MusterilerPageState extends State<MusterilerPage> {
     );
   }
 
-  List<GDPData> getChartData() {
-    final List<GDPData> chartData = [
-      GDPData(companies[1].name, 10),
-      GDPData('Evas', 12),
-      GDPData('xy', 10),
-      GDPData('zt', 30),
-      GDPData('ab', 15),
-    ];
-    return chartData;
-  }
-
-  void fetchCompanies() async {
-    const url = Services.companyUrl;
-    final uri = Uri.parse(url);
-    final response = await http.get(uri);
-    final body = response.body;
-    final json = jsonDecode(body);
+  void fetchData() async {
+    final taskUrl = await Services.getData(Services.tasksUrl);
+    final companyUrl = await Services.getData(Services.companyUrl);
 
     setState(() {
-      for (var element in json) {
-        companies.add(Company.toCompany(element));
-        companiesData.add(GDPData.toGDPData(element));
+      for (var element in taskUrl) {
+        // print(element);
+        tasks.add(TaskModel.toTask(element));
       }
+      for (var element in companyUrl) {
+        companies.add(Company.toCompany(element));
+      }
+      //  print(_companiesWcount);
+      for (var task in tasks) {
+        for (var company in companies) {
+          if (task.reqUserID == company.id) {
+            if (_companiesWcount.containsKey(company.name)) {
+              _companiesWcount.update(
+                  company.name, (int) => _companiesWcount[company.name]! + 1);
+
+              continue;
+            } else {
+              _companiesWcount[company.name] = 1;
+            }
+            continue;
+          }
+        }
+      }
+      print(_companiesWcount);
+      _companiesWcount.forEach((key, value) {
+        _chartData.add(GDPData(key, value.toDouble()));
+      });
     });
+    // _chartData = getChartData();
   }
 }
 
@@ -133,8 +145,4 @@ class GDPData {
   GDPData(this.continent, this.gdp);
   final String continent;
   final double gdp;
-
-  static toGDPData(map) {
-    return GDPData(map['name'], 10);
-  }
 }

@@ -3,12 +3,13 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:takip_sistem_mos/Assets/colors.dart';
+import 'package:takip_sistem_mos/components/cards/list_tile_wiith_image.dart';
 import 'package:takip_sistem_mos/components/cards/person_data_card.dart';
 import 'package:takip_sistem_mos/models/task_model.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
-import '../../components/cards/list_tile.dart';
+import '../../models/costumer.dart';
 import '../../models/employee.dart';
 import '../../services/services.dart';
 //import '../../Assets/colors.dart';
@@ -23,12 +24,15 @@ class CalisanViewPage extends StatefulWidget {
 
 class _CalisanViewPageState extends State<CalisanViewPage> {
   List<TaskModel> employeeTasks = [];
+  List<Company> companies = [];
   List<GDPData> _chartData = [];
+  Map<String, int> _companiesWcount = {};
   late TooltipBehavior _tooltipBehavior;
 
   @override
   void initState() {
-    fetchCompanies();
+    fetchData();
+    //print(companies);
 
     _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
@@ -56,6 +60,7 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
                       child: PersonDataCard(
                         employee: widget.employee,
                         isCircularAvatar: true,
+                        tasklist: employeeTasks,
                       )),
                   firmalarCircularChart(),
                 ],
@@ -84,18 +89,21 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
                     //     scrollDirection: Axis.horizontal,
                     itemCount: employeeTasks.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return ProjectListTile(
-                          ontap: () {
-                            print(employeeTasks[index].isDone);
-                          },
-                          color: employeeTasks[index].isDone
-                              ? Colors.green
-                              : Colors.red,
-                          title: employeeTasks[index].description,
-                          subTitle: employeeTasks[index].respUserID.toString(),
-                          icon: employeeTasks[index].isDone
-                              ? Icons.check
-                              : Icons.close);
+                      return ImageListTile(
+                        imagePath: getCompany(
+                                employeeTasks[index].reqUserID, companies)
+                            .image,
+                        trailingIcon: employeeTasks[index].isDone
+                            ? Icons.check
+                            : Icons.close,
+                        color: employeeTasks[index].isDone
+                            ? Colors.green
+                            : Colors.red,
+                        title: getCompany(
+                                employeeTasks[index].reqUserID, companies)
+                            .name,
+                        subTitle: employeeTasks[index].description,
+                      );
                     }),
               ),
             ),
@@ -122,33 +130,48 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
     );
   }
 
-  List<GDPData> getChartData() {
-    final List<GDPData> chartData = [
-      GDPData('Kalyon', 15),
-      GDPData('Evas', 3),
-      GDPData('İç görevler', 6),
-    ];
-    return chartData;
+  Company getCompany(int taskid, List<Company> list) {
+    for (var element in list) {
+      if (element.id == taskid) {
+        return element;
+      }
+    }
+    return Company.mosCompany();
   }
 
-  void fetchCompanies() async {
-    const url = Services.tasksUrl;
-    final uri = Uri.parse(url);
-    final response = await http.get(uri);
-    final body = response.body;
-    final json = jsonDecode(body);
+  void fetchData() async {
+    final taskUrl = await Services.getData(Services.tasksUrl);
+    final companyUrl = await Services.getData(Services.companyUrl);
 
     setState(() {
-      for (var element in json) {
-        // print(element['employee_Id']);
+      for (var element in taskUrl) {
         if (element['employee_Id'] == widget.employee.id) {
           employeeTasks.add(TaskModel.toTask(element));
         }
-
-        //  companiesData.add(GDPData.toGDPData(element));
       }
+      for (var element in companyUrl) {
+        companies.add(Company.toCompany(element));
+      }
+      for (var task in employeeTasks) {
+        for (var company in companies) {
+          if (task.reqUserID == company.id) {
+            if (_companiesWcount.containsKey(company.name)) {
+              _companiesWcount.update(
+                  company.name, (int) => _companiesWcount[company.name]! + 1);
+
+              continue;
+            } else {
+              _companiesWcount[company.name] = 1;
+            }
+            continue;
+          }
+        }
+      }
+      _companiesWcount.forEach((key, value) {
+        _chartData.add(GDPData(key, value.toDouble()));
+      });
     });
-    _chartData = getChartData();
+    // _chartData = getChartData();
   }
 }
 

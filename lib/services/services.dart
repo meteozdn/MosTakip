@@ -10,4 +10,12 @@ class Services {
 
   static const String tasksUrl =
       "https://64e3ac1abac46e480e791292.mockapi.io/Tasks";
+
+  static getData(String url) async {
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+    final body = response.body;
+    final json = jsonDecode(body);
+    return json;
+  }
 }

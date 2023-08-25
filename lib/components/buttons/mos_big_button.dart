@@ -25,8 +25,8 @@ class MosBigButton extends StatelessWidget {
           color: color, // Colors.black, MosDestekColors.toryBlue,
           borderRadius: const BorderRadius.all(Radius.circular(30)),
         ),
-        //  width: screenWidth * 1.5,
-        //  height: screenWidth * 0.1,
+        width: screenWidth * 1.5,
+        height: screenWidth * 0.07,
         child: Text(
           text,
           style: MosTextStyles.boldWhiteTextStyle,

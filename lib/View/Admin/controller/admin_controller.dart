@@ -31,51 +31,11 @@ class _AdminControllerState extends State<AdminController> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: MosDestekColors.toryBlue,
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (_) => AlertDialog(
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        title: const Text(
-                          MosTexts.addCallText,
-                          style: MosTextStyles.boldToryBlueTextStyle,
-                        ),
-                        content: SizedBox(
-                          height: screenWidth / 1.3,
-                          child: Column(
-                            children: [
-                              const Expanded(
-                                flex: 3,
-                                child: TextField(
-                                  maxLines: 7,
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Padding(
-                                  padding: ProjectPaddings.smallTopPadding,
-                                  child: MosSmallButton(
-                                      onTap: () {},
-                                      screenWidth: screenWidth,
-                                      text: MosTexts.sendText,
-                                      color: MosDestekColors.toryBlue),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ));
-            },
-            child: const Icon(Icons.add),
-          ),
           bottomNavigationBar: const BottomAppBar(
             //  surfaceTintColor: Colors.amber,
             color: MosDestekColors.toryBlue,
             child: TabBar(
+              indicatorColor: MosDestekColors.white,
               tabs: [
                 Tab(
                   text: MosTexts.costumerText,

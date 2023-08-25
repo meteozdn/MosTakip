@@ -9,6 +9,16 @@ class Company {
     required this.city,
     required this.key,
   });
+  static mosCompany() {
+    Company(
+        id: 0,
+        name: "Mos",
+        image: "",
+        country: "Turkey",
+        city: "Kocaeli",
+        key: 011110);
+  }
+
   static toCompany(map) {
     return Company(
         id: int.parse(map['CompanyId']),

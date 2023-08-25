@@ -5,6 +5,8 @@ import '../../Assets/colors.dart';
 
 class ImageListTile extends StatelessWidget {
   ImageListTile({
+    this.color,
+    this.trailingIcon,
     this.ontap,
     required this.imagePath,
     required this.title,
@@ -17,6 +19,8 @@ class ImageListTile extends StatelessWidget {
   final String title;
   final String subTitle;
   bool isCircularAvatar;
+  Color? color = MosDestekColors.toryBlue;
+  IconData? trailingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +46,11 @@ class ImageListTile extends StatelessWidget {
           ),
           subtitle: Text(
             subTitle,
+          ),
+          trailing: Icon(
+            trailingIcon,
+            color: color,
+            size: 35,
           ),
           //  trailing: const Icon(Icons.add),
         ),

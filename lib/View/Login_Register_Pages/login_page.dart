@@ -44,37 +44,37 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 //  Text("Giriş Yap"),
-                const Expanded(
-                  flex: 1,
-                  child: TextField(
-                    decoration:
-                        InputDecoration(hintText: MosTexts.usernameText),
+                SizedBox(
+                  height: screenHeight * 0.3,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const TextField(
+                        decoration:
+                            InputDecoration(hintText: MosTexts.usernameText),
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          hintText: MosTexts.passwordText,
+                        ),
+                      ),
+                      MosBigButton(
+                          color: MosDestekColors.toryBlue,
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const CompanyController(),
+                            ));
+                          },
+                          screenWidth: screenHeight,
+                          text: MosTexts.loginText),
+                    ],
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: TextFormField(
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      hintText: MosTexts.passwordText,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: MosBigButton(
-                      color: MosDestekColors.toryBlue,
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const CompanyController(),
-                        ));
-                      },
-                      screenWidth: screenHeight,
-                      text: MosTexts.loginText),
-                ),
-                Padding(
-                  padding: ProjectPaddings.midTopPadding * 2,
-                  child: const Row(children: [
+
+                const Padding(
+                  padding: ProjectPaddings.midTopPadding,
+                  child: Row(children: [
                     Expanded(
                         child: Padding(
                       padding: EdgeInsets.only(right: 10.0),

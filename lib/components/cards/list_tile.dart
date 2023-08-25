@@ -6,6 +6,7 @@ class ProjectListTile extends StatelessWidget {
   ProjectListTile({
     this.ontap,
     this.color,
+    this.trailingIcon,
     required this.icon,
     required this.title,
     required this.subTitle,
@@ -16,7 +17,7 @@ class ProjectListTile extends StatelessWidget {
   final String title;
   final String subTitle;
   Color? color = MosDestekColors.toryBlue;
-
+  IconData? trailingIcon;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -36,6 +37,11 @@ class ProjectListTile extends StatelessWidget {
           title: Text(
             title,
             style: MosTextStyles.midToryBlueTextStyle,
+          ),
+          trailing: Icon(
+            trailingIcon,
+            color: color,
+            size: 35,
           ),
           subtitle: Text(
             subTitle,
