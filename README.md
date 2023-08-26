@@ -8,7 +8,7 @@ Screenshot and gifs will be uploaded when the application is complete 🥰🥰
 
 
 ## Design
-![banner resmi](/Screenshots/banner.png)
+![banner resmi](/Screenshots/bannr.png)
 
 ### Login-Register
 <img src="https://github.com/meteozdn/MosTakip/blob/main/Screenshots/login.png" width="380" height="800" />, <img src="https://github.com/meteozdn/MosTakip/blob/main/Screenshots/register.png" width="380" height="800" />
