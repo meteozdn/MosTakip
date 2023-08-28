@@ -157,7 +157,7 @@ class _CalisanViewPageState extends State<CalisanViewPage> {
           if (task.reqUserID == company.id) {
             if (_companiesWcount.containsKey(company.name)) {
               _companiesWcount.update(
-                  company.name, (int) => _companiesWcount[company.name]! + 1);
+                  company.name, (int a) => _companiesWcount[company.name]! + 1);
 
               continue;
             } else {

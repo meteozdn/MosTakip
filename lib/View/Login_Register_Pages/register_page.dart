@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/View/Admin/controller/admin_controller.dart';
 import 'package:takip_sistem_mos/View/Employee/controller/employee_controller.dart';
+import 'package:takip_sistem_mos/components/buttons/mos_button.dart';
 import 'package:takip_sistem_mos/components/texts/text.dart';
 import '../../../Assets/Images/images.dart';
 import '../../../Assets/colors.dart';
@@ -76,11 +77,11 @@ class RegisterPage extends StatelessWidget {
                   decoration: InputDecoration(hintText: MosTexts.passwordText),
                 ),
               ),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: ProjectPaddings.midTopPadding,
-                  child: MosBigButton(
+              Padding(
+                padding: ProjectPaddings.midTopPadding,
+                child: SizedBox(
+                  height: screenWidth * .15,
+                  child: MosButton(
                       color: MosDestekColors.toryBlue,
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
@@ -91,11 +92,11 @@ class RegisterPage extends StatelessWidget {
                       text: MosTexts.signInText),
                 ),
               ),
-              Expanded(
+              const Expanded(
                 flex: 2,
                 child: Padding(
                   padding: ProjectPaddings.mainHorizontalPadding,
-                  child: const Row(children: [
+                  child: Row(children: [
                     Expanded(
                         child: Padding(
                       padding: EdgeInsets.only(right: 10.0),

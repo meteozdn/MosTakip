@@ -9,6 +9,7 @@ import '../../../Assets/colors.dart';
 import 'package:takip_sistem_mos/View/Company/introduction.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';
 import '../../components/buttons/mos_big_button.dart';
+import '../../components/buttons/mos_button.dart';
 import '../../styles/clip_path.dart';
 import '../../styles/text_styles.dart';
 //import '../View/Employee/introduction_employee.dart';
@@ -59,7 +60,7 @@ class LoginPage extends StatelessWidget {
                           hintText: MosTexts.passwordText,
                         ),
                       ),
-                      MosBigButton(
+                      MosButton(
                           color: MosDestekColors.toryBlue,
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
