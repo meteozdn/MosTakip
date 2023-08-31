@@ -22,9 +22,22 @@ class TaskModel {
         id: int.parse(map['cagriId']),
         reqUserID: map['musteriId'],
         respUserID: map['employee_Id'],
-        isRespOnTime: true,
+        isRespOnTime: map['ontime'],
         isDone: map['isDone'],
         isInDeadline: map['isDeadline'],
         description: map['description']);
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['musteriId'] = reqUserID;
+    data['description'] = description;
+    data['employee_Id'] = respUserID;
+    data['isDone'] = isDone;
+    data['ontime'] = isRespOnTime;
+    // data['onDeadline'] = isInDeadline;
+    data['isDeadline'] = isInDeadline;
+    data['cagriId'] = id.toString();
+    return data;
   }
 }

@@ -25,15 +25,15 @@ class _SettingsPageState extends State<SettingsPage> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          bottomNavigationBar: const BottomAppBar(
+          bottomNavigationBar: BottomAppBar(
             //  surfaceTintColor: Colors.amber,
             color: MosDestekColors.toryBlue,
             child: TabBar(
               tabs: [
                 Tab(
-                  text: MosTexts.generalText,
+                  text: Tabs.Calisanlar.name,
                 ),
-                Tab(
+                const Tab(
                   text: MosTexts.usersText,
                 )
               ],
@@ -47,3 +47,5 @@ class _SettingsPageState extends State<SettingsPage> {
         ));
   }
 }
+
+enum Tabs { Calisanlar, Musteriler }
