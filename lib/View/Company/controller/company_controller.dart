@@ -1,12 +1,11 @@
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/models/costumer.dart';
 import 'package:takip_sistem_mos/models/task_model.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 import '../../../../Assets/colors.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';
-
 import '../../../components/buttons/mos_small_button.dart';
 import '../../../components/cards/list_tile.dart';
 import '../../../components/cards/tamamlanan_card.dart';
@@ -20,6 +19,7 @@ class CompanyController extends StatefulWidget {
 }
 
 class _CompanyControllerState extends State<CompanyController> {
+  TextEditingController _controller = TextEditingController();
   final customer = Company(
       id: 2,
       name: "EVAS",
@@ -178,14 +178,20 @@ class _CompanyControllerState extends State<CompanyController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const TextField(
-                      style: TextStyle(),
+                    TextField(
+                      controller: _controller,
+                      style: const TextStyle(),
                       maxLines: 7,
                     ),
                     Padding(
                       padding: ProjectPaddings.smallTopPadding,
                       child: MosSmallButton(
-                          onTap: () {},
+                          onTap: () {
+                            setState(() {
+                              postData(_controller.text);
+                              _controller.text = "";
+                            });
+                          },
                           screenWidth: screenWidth,
                           text: MosTexts.sendText,
                           color: MosDestekColors.toryBlue),
@@ -194,5 +200,20 @@ class _CompanyControllerState extends State<CompanyController> {
                 ),
               ),
             ));
+  }
+
+  postData(String desc) async {
+    var response = await http.post(Uri.parse(Services.tasksUrl), body: {
+      "musteriId": "${customer.id}",
+      "description": desc,
+      "recTime": "1692735282",
+      "employee_Id": "2",
+      "isDone": "false",
+      "ontime": "false",
+      "onDeadline": "true",
+      "isDeadline": "true",
+      //  "cagriId": "30"
+    });
+    return response;
   }
 }
