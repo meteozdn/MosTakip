@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:takip_sistem_mos/models/costumer.dart';
+import 'package:takip_sistem_mos/models/task_model.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 import '../../../../Assets/colors.dart';
 import 'package:takip_sistem_mos/styles/paddings.dart';
@@ -9,6 +11,7 @@ import '../../../components/buttons/mos_small_button.dart';
 import '../../../components/cards/list_tile.dart';
 import '../../../components/cards/tamamlanan_card.dart';
 import '../../../components/texts/text.dart';
+import '../../../services/services.dart';
 
 class CompanyController extends StatefulWidget {
   const CompanyController({super.key});
@@ -17,25 +20,48 @@ class CompanyController extends StatefulWidget {
 }
 
 class _CompanyControllerState extends State<CompanyController> {
-  File? images;
+  final customer = Company(
+      id: 2,
+      name: "EVAS",
+      image: "https://www.evas.com.tr/assets/images/logo.png",
+      country: "Turkey",
+      city: "Istanbul",
+      key: 11233);
+  List<TaskModel> tasksFinish = [];
+  List<TaskModel> tasksWaitings = [];
+  void fetchTasks() async {
+    final taskUrl = await Services.getData(Services.tasksUrl);
+    setState(() {
+      for (var element in taskUrl) {
+        if (element["musteriId"] == customer.id) {
+          if (element["isDone"] == false) {
+            tasksWaitings.add(TaskModel.toTask(element));
+            print(tasksWaitings[0].id);
+          } else {
+            tasksFinish.add(TaskModel.toTask(element));
+            // print(tasksFinish[0].id);
+          }
+        }
+      }
+    });
+
+    print(tasksWaitings.length);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    fetchTasks();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
     const String title = "Çağrı Talebi Oluşturun";
 
-    @override
-    List topCards = const [
-      TopTaskCard(
-        color: MosDestekColors.aliceBlue,
-      ),
-      TopTaskCard(
-        color: MosDestekColors.aliceBlue,
-      ),
-      TopTaskCard(
-        color: MosDestekColors.aliceBlue,
-      ),
-    ];
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: MosDestekColors.toryBlue,
@@ -45,6 +71,19 @@ class _CompanyControllerState extends State<CompanyController> {
           child: const Icon(Icons.add),
         ),
         appBar: AppBar(
+          centerTitle: false,
+          actions: [
+            Padding(
+              padding: ProjectPaddings.mainHorizontalPadding,
+              child: CircleAvatar(
+                backgroundColor: MosDestekColors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Image.network(customer.image),
+                ),
+              ),
+            )
+          ],
           backgroundColor: MosDestekColors.toryBlue,
           title: const Text(
             title,
@@ -68,9 +107,13 @@ class _CompanyControllerState extends State<CompanyController> {
                   height: screenWidth / 3,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: topCards.length,
+                      itemCount: tasksWaitings.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return topCards[index];
+                        return TopTaskCard(
+                          name: "Evas",
+                          color: MosDestekColors.aliceBlue,
+                          task: tasksWaitings[index],
+                        );
                       }),
                 )),
             Padding(
@@ -95,12 +138,20 @@ class _CompanyControllerState extends State<CompanyController> {
                 child: SizedBox(
                   //  height: screenHeight * 0.7,
                   child: ListView.builder(
-                      itemCount: 6,
+                      itemCount: tasksFinish.length,
                       itemBuilder: (BuildContext context, int index) {
                         return ProjectListTile(
-                            title: "Tamamlanan İs${index}",
-                            subTitle: "Tamamlanan İs subtitle${index}",
-                            icon: Icons.done);
+                          title: tasksFinish[index].description,
+                          subTitle: tasksFinish[index].isRespOnTime
+                              ? "Zamanında"
+                              : "Geç",
+                          icon: tasksFinish[index].isRespOnTime
+                              ? Icons.alarm_on_outlined
+                              : Icons.alarm_off,
+                          color: tasksFinish[index].isRespOnTime
+                              ? MosDestekColors.green
+                              : MosDestekColors.red,
+                        );
                       }),
                 ),
               ),
@@ -123,45 +174,21 @@ class _CompanyControllerState extends State<CompanyController> {
                 style: MosTextStyles.boldToryBlueTextStyle,
               ),
               content: SizedBox(
-                height: screenWidth / 1.3,
+                height: screenWidth * 0.7,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const Expanded(
-                      flex: 4,
-                      child: TextField(
-                        style: TextStyle(),
-                        maxLines: 7,
-                      ),
+                    const TextField(
+                      style: TextStyle(),
+                      maxLines: 7,
                     ),
-                    Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: ProjectPaddings.smallTopPadding,
-                        child: Stack(
-                          alignment: Alignment.centerRight,
-                          children: [
-                            Container(
-                              width: screenWidth,
-                              height: 70,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all()),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: ProjectPaddings.smallTopPadding,
-                        child: MosSmallButton(
-                            onTap: () {},
-                            screenWidth: screenWidth,
-                            text: MosTexts.sendText,
-                            color: MosDestekColors.toryBlue),
-                      ),
+                    Padding(
+                      padding: ProjectPaddings.smallTopPadding,
+                      child: MosSmallButton(
+                          onTap: () {},
+                          screenWidth: screenWidth,
+                          text: MosTexts.sendText,
+                          color: MosDestekColors.toryBlue),
                     )
                   ],
                 ),

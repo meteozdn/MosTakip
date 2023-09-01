@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:takip_sistem_mos/Assets/colors.dart';
+import 'package:takip_sistem_mos/models/task_model.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
 
 import '../../styles/paddings.dart';
 
 class TopTaskCard extends StatelessWidget {
   final Color color;
+  final TaskModel task;
+  final String name;
   const TopTaskCard({
     super.key,
     required this.color,
+    required this.task,
+    required this.name,
   });
 
   @override
@@ -31,18 +36,19 @@ class TopTaskCard extends StatelessWidget {
             flex: 1,
             child: Padding(
               padding: ProjectPaddings.mainHorizontalPadding / 3,
-              child: const Stack(
+              child: Stack(
                 alignment: Alignment.centerRight,
                 children: [
                   Row(
                     children: [
                       Text(
-                        "Burak Hacıoğlu",
-                        style: MosTextStyles.boldToryBlueTextStyle,
+                        "Evas",
+                        style: MosTextStyles.boldToryBlueTextStyle
+                            .copyWith(fontSize: 25),
                       )
                     ],
                   ),
-                  Icon(
+                  const Icon(
                     Icons.timer,
                     color: MosDestekColors.toryBlue,
                   )
@@ -50,31 +56,16 @@ class TopTaskCard extends StatelessWidget {
               ),
             ),
           ),
-          const Expanded(
+          Expanded(
             flex: 2,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(
-                "madde açıklamasıaç ıklamasıaç ıklaması,",
+                task.description,
                 overflow: TextOverflow.fade,
                 maxLines: 3,
                 softWrap: true,
               ),
-            ),
-          ),
-          const Expanded(
-            flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(right: 10.0),
-                  child: Text(
-                    "11.12.2023",
-                    style: MosTextStyles.boldToryBlueTextStyle,
-                  ),
-                )
-              ],
             ),
           ),
         ],

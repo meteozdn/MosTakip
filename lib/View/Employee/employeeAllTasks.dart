@@ -8,6 +8,7 @@ import 'package:takip_sistem_mos/styles/text_styles.dart';
 
 import '../../components/cards/list_tile.dart';
 import '../../components/texts/text.dart';
+import '../../models/task_model.dart';
 
 //import 'package:expansion_tile_card/expansion_tile_card.dart';
 
@@ -28,11 +29,29 @@ class _EmployeeAllTasksPageState extends State<EmployeeAllTasksPage> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     @override
-    List topCards = const [
+    List topCards = [
       TopTaskCard(
+        name: "Kenan",
         color: MosDestekColors.aliceBlue,
+        task: TaskModel(
+            id: 1,
+            reqUserID: 2,
+            respUserID: 3,
+            isRespOnTime: true,
+            isDone: false,
+            isInDeadline: true,
+            description: "description"),
       ),
       TopTaskCard(
+        name: "Kenan",
+        task: TaskModel(
+            id: 1,
+            reqUserID: 2,
+            respUserID: 3,
+            isRespOnTime: true,
+            isDone: false,
+            isInDeadline: true,
+            description: "description"),
         color: MosDestekColors.aliceBlue,
       ),
     ];

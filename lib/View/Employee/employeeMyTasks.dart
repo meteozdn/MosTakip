@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:takip_sistem_mos/models/task_model.dart';
 
 import 'package:takip_sistem_mos/styles/paddings.dart';
 import 'package:takip_sistem_mos/styles/text_styles.dart';
@@ -45,7 +46,16 @@ class _EmployeeMyTasksPageState extends State<EmployeeMyTasksPage> {
                   scrollDirection: Axis.horizontal,
                   itemCount: 3,
                   itemBuilder: (BuildContext context, int index) {
-                    return const TopTaskCard(
+                    return TopTaskCard(
+                      name: "Kenan",
+                      task: TaskModel(
+                          id: 1,
+                          reqUserID: 2,
+                          respUserID: 3,
+                          isRespOnTime: true,
+                          isDone: false,
+                          isInDeadline: true,
+                          description: "description"),
                       color: MosDestekColors.pip,
                     );
                   }),

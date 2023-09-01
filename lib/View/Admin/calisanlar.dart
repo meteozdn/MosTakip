@@ -24,7 +24,11 @@ class CalisanlarPage extends StatefulWidget {
 class _CalisanlarPageState extends State<CalisanlarPage> {
   late List<_ChartData> data;
   late TooltipBehavior _tooltip;
-
+  Map<String, int> _compWcount = {};
+  List<TaskModel> tasks = [];
+  List<_ChartData> _chartData = [];
+  // List<Company> companies = [];
+  List<Employee> employees = [];
   @override
   void initState() {
     super.initState();
@@ -33,11 +37,6 @@ class _CalisanlarPageState extends State<CalisanlarPage> {
     fetchEmployee();
   }
 
-  Map<String, int> _compWcount = {};
-  List<TaskModel> tasks = [];
-  List<_ChartData> _chartData = [];
-  // List<Company> companies = [];
-  List<Employee> employees = [];
   @override
   Widget build(BuildContext context) {
     //  double screenWidth = MediaQuery.of(context).size.width;
